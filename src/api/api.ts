@@ -7,8 +7,8 @@
 import request from "./request";
 function faceBook() {
   let data = {};
-  var key = "faceBook";
-  var time = 60;
+  var key = "";
+  var time = 0;
   return request(
     "https://facebook.github.io/react-native/movies.json",
     data,
@@ -48,10 +48,24 @@ function login(account: string | undefined, passWord: string | undefined) {
     passWord
   });
 }
+
+function getnCovData(){
+  return request(
+    "/2019nCov/getnCovInfo",
+    {},
+    "GET",
+    "",
+    0
+  );
+
+ 
+}
 export default {
   get,
   post,
   getArticleList,
   login,
-  getHotArticleList
+  getHotArticleList,
+  faceBook,
+  getnCovData
 };

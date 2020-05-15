@@ -23,6 +23,7 @@ export default class ArticalList extends Component<any, state> {
   }
   componentDidMount() {
     this.getArticlesList();
+    console.log("this.props",this.props)
   }
 
   getArticlesList() {
@@ -56,7 +57,7 @@ export default class ArticalList extends Component<any, state> {
           <div className={styles.container}>
             <div className={styles.articleContent}>
               <Carousel></Carousel>
-              <List {...this.props} list={list}></List>
+              <List  list={list} {...this.props}></List>
             </div>
             <SideNav></SideNav>
           </div>

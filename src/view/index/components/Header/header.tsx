@@ -30,6 +30,7 @@ class Header extends React.Component<IProps, IState> {
         { path: "/", title: "首页", type: "home" },
         { path: "/archive", title: "归档", type: "snippets" },
         { path: "/about", title: "关于", type: "user" },
+        { path: "/project", title: "项目", type: "user" },
         { path: "/edite", title: "写文章", type: "edit", auth: "0" }
       ]
     };

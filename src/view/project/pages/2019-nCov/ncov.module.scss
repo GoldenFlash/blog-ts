@@ -1,0 +1,71 @@
+.container{
+    background-color: #f8f8f8;
+}
+.content{
+    width: 800px;
+    // margin-top: 100px;
+    margin:0 auto;
+}
+.chinaData{
+    width: 800px;
+    // height: 100px;
+    // border: solid red 1px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
+.china_item{
+    flex: 1;
+    display: flex;
+    align-items:center ;
+    justify-content: space-around;
+    flex-direction: column;
+    padding:5px 3px;
+    margin:3px
+}
+
+.china_item>p:first-child{
+    font-size: 12px;
+    padding: 4px;
+}
+.china_item>div:nth-child(2){
+    // font-size: 12px;
+    margin: 6px 0px;
+    // margin-top: 20px;
+    // color: #f7ab1a;
+}
+.china_item>p>span:first-child{
+    color: #999;
+}
+.china_item>div{
+    padding: 4px;
+}
+.china_item_all{
+    @extend .china_item;
+    color:#d81d1b;
+    background-color:#fdf1f1
+}
+.china_item_maybe{
+    @extend .china_item;
+    color:#f7ab1a;
+    background-color:#fff7ed
+}
+.china_item_cured{
+    @extend .china_item;
+    color:#178b50;
+    background-color:#f1f8f4
+}
+.china_item_died{
+    @extend .china_item;
+    color:#66666c;
+    background-color: #f8f8f8;
+}
+
+
+.echart{
+    height: 800px;
+    // width:800px;
+    // background-color:#999;
+
+}

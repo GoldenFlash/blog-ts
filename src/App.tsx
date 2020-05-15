@@ -13,26 +13,29 @@ import ScrollToTop from "@/components/ScrollToTop";
 
 import "./App.css";
 import Index from "./view/index/index";
-
+import Article from "./view/article/article"
+import Test from "./view/test/test";
+import ProjectList from "./view/project/project"
+import ProjectDetail from "./view/project/pages/index"
 moment.locale("zh-cn");
 
 var store = createStore(
   reducers,
   applyMiddleware(
-    thunkMiddleware // 允许我们 dispatch() 函数
+    thunkMiddleware // 允许 dispatch() 函数
   )
 );
 
 store.dispatch(windowAction());
-let timer:any = null
+let timer: any = null;
 window.onresize = () => {
-  if(timer){
-    clearTimeout(timer)
+  if (timer) {
+    clearTimeout(timer);
   }
   timer = setTimeout(() => {
-    console.log("timer")
+    console.log("timer");
     store.dispatch(windowAction());
-    timer = null
+    timer = null;
   }, 1000);
 };
 
@@ -40,14 +43,15 @@ const App: React.FC = () => {
   return (
     <Provider store={store}>
       <Router>
-        <ScrollToTop>
-          <Route path="/">
-            <Index></Index>
-          </Route>
-        </ScrollToTop>
-
-
-
+        {/* <ScrollToTop> */}
+          <Switch>
+            <Route path="/test" component={Test}/>
+            <Route exact path="/article/:id" component={Article} />
+            <Route exact path="/project/:project_name" component={ProjectDetail} />
+            <Route exact path="/project" component={ProjectList} />
+            <Route path="/" component={Index}/>
+          </Switch>
+        {/* </ScrollToTop> */}
 
         {/* <Route exact path="/article/:id" component={ArticleContent} />
         <Route exact path="/archive" component={Archive} />

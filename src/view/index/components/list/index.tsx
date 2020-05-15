@@ -15,6 +15,7 @@ export default function ArticleList(props:any) {
     let list = props.list
     var HTMLtag = new RegExp("<.+?>", "g");
     function navigate(item:any) {
+        // console.log("props",props)
         props.history.push(`/article/${item._id}`)
     }
     return (
