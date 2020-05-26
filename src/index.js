@@ -2,17 +2,19 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 
-import hljs from 'highlight.js'
-// import javascript from 'highlight.js/lib/languages/javascript'
-import 'highlight.js/styles/atom-one-light.css'
 import './index.css';
-import './styles/markdown.scss'
 import "./styles/reset.css"
+
+import hljs from 'highlight.js'
+import 'highlight.js/styles/atom-one-light.css'
+import '@/styles/markdown.scss'
+
+import javascript from 'highlight.js/lib/languages/javascript'
 
 
 import * as serviceWorker from './serviceWorker';
 
-// hljs.registerLanguage('javascript', javascript);
+hljs.registerLanguage('javascript', javascript);
 
 
 ReactDOM.render(<App />, document.getElementById('root'));

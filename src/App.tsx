@@ -1,5 +1,8 @@
-import React from "react";
+import React, { Suspense } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { renderRoutes } from "react-router-config";
+import routers from "./router/index"
+
 import { createStore, applyMiddleware } from "redux";
 import thunkMiddleware from "redux-thunk";
 import { Provider } from "react-redux";
@@ -9,14 +12,9 @@ import "moment/locale/zh-cn";
 import reducers from "./redux/reducers";
 import "antd/dist/antd.css";
 import { windowWidth as windowAction } from "@/redux/common/action.js";
-import ScrollToTop from "@/components/ScrollToTop";
-
+// import ScrollToTop from "@/components/ScrollToTop";
+import Loading from "./components/Loading"
 import "./App.css";
-import Index from "./view/index/index";
-import Article from "./view/article/article"
-import Test from "./view/test/test";
-import ProjectList from "./view/project/project"
-import ProjectDetail from "./view/project/pages/index"
 moment.locale("zh-cn");
 
 var store = createStore(
@@ -42,18 +40,16 @@ window.onresize = () => {
 const App: React.FC = () => {
   return (
     <Provider store={store}>
-      <Router>
-        {/* <ScrollToTop> */}
-          <Switch>
-            <Route path="/test" component={Test}/>
-            <Route exact path="/article/:id" component={Article} />
-            <Route exact path="/project/:project_name" component={ProjectDetail} />
-            <Route exact path="/project" component={ProjectList} />
-            <Route path="/" component={Index}/>
-          </Switch>
-        {/* </ScrollToTop> */}
+      <Suspense fallback={<Loading></Loading> }>
 
-        {/* <Route exact path="/article/:id" component={ArticleContent} />
+        <Router>
+          {/* <ScrollToTop> */}
+          <Switch>
+            {renderRoutes(routers)}
+          </Switch>
+          {/* </ScrollToTop> */}
+
+          {/* <Route exact path="/article/:id" component={ArticleContent} />
         <Route exact path="/archive" component={Archive} />
         <Route exact path="/tag/:tag" component={Tag} />
         <Route exact path={`/search/:search`} component={ArticleList} />
@@ -61,12 +57,14 @@ const App: React.FC = () => {
         <Route exact path="/" component={ArticleList} />
         <Route path="*" component={NotFound} /> */}
 
-        {/* <Switch>
+          {/* <Switch>
           <Route path="/edite" component={Edite} />
           <Route path="/" component={Index}></Route>
           <Route path="*" component={NotFound} ></Route>
         </Switch> */}
-      </Router>
+        </Router>
+      </Suspense>
+
     </Provider>
   );
 };

@@ -1,11 +1,9 @@
 import React, { Component } from "react";
-import Loading from "../../components/Loading";
-import api from "../../api/api";
+import { renderRoutes } from "react-router-config";
 import SideNav from "../sideNav/sideNav"
-import List from "./components/list/index";
-import Carousel from "./components/carousel/carousel";
 import Header from "./components/Header/header";
-import styles from "@/view/index/index.module.scss"
+import styles from "./index.module.scss"
+
 interface state {
   list: Array<object>;
   timeLine: Array<object>;
@@ -22,48 +20,21 @@ export default class ArticalList extends Component<any, state> {
     };
   }
   componentDidMount() {
-    this.getArticlesList();
-    console.log("this.props",this.props)
-  }
-
-  getArticlesList() {
-    this.setState({
-      loading: true
-    });
-    api
-      .getArticleList()
-      .then((res: any) => {
-        if (res.data) {
-          this.setState({
-            list: res.data,
-            loading: false
-          });
-        }
-      })
-      .catch(err => {
-        console.log("err", err);
-      });
+    console.log("this.props", this.props)
   }
 
   render() {
-    let loading = this.state.loading;
-    let list = this.state.list;
     return (
       <>
         <Header></Header>
-        {loading ? (
-          <Loading />
-        ) : list.length > 0 ? (
-          <div className={styles.container}>
-            <div className={styles.articleContent}>
-              <Carousel></Carousel>
-              <List  list={list} {...this.props}></List>
-            </div>
-            <SideNav></SideNav>
+        <div className={styles.wrapper}>
+          <div className={styles.content}>
+            {this.props.route.routes ?
+              renderRoutes(this.props.route.routes)
+              : null}
           </div>
-        ) : (
-          <div>数据为空</div>
-        )}
+          <SideNav></SideNav>
+        </div>
       </>
     );
   }
