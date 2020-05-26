@@ -35,8 +35,8 @@ function get(url: string, data?: {} | undefined, key?: any, time?: any) {
     time ? time : ""
   );
 }
-function getArticleList() {
-  return get("article/getHotArticle");
+function getArticleList(key?:string) {
+  return get("article/getHotArticle",{search:key});
 }
 function getHotArticleList() {
   return get("article/getHotArticle");

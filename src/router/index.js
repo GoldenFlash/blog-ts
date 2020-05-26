@@ -38,6 +38,12 @@ export default [
         requiresAuth: false
       },
       {
+        path: "/search/:search",
+        exact: true,
+        component: ArticleList,
+        requiresAuth: false
+      },
+      {
         path: "/article/:id",
         exact: true,
         component: Article,
@@ -69,11 +75,11 @@ export default [
         component: ProjectList,
         requiresAuth: true
       },
-      {
-        path: "/*",
-        component:  ()=><Redirect to="/NotFound" />,
-        requiresAuth: false
-      }
+      // {
+      //   path: "/*",
+      //   component:  ()=><Redirect to="/NotFound" />,
+      //   requiresAuth: false
+      // }
     ]
   },
   // {

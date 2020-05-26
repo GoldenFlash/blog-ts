@@ -25,11 +25,12 @@ export default class ArticalList extends Component<any, state> {
   }
 
   getArticlesList() {
+    let keywords = this.props.match.params.search||""
     this.setState({
       loading: true
     });
     api
-      .getArticleList()
+      .getArticleList(keywords)
       .then((res: any) => {
         if (res.data) {
           this.setState({

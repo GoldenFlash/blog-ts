@@ -1,6 +1,6 @@
 import React, { PureComponent } from "react";
 import { Link } from "react-router-dom";
-import { Divider, Calendar } from "antd";
+import { Divider } from "antd";
 import CustomCanlendar from "@/components/calendar";
 import styles from "./sideNav.module.scss";
 import calendar_img from "@/assets/calendar.svg";
@@ -80,7 +80,7 @@ export default class LeftNav extends PureComponent<IProps, IState> {
       <div className={styles.leftNav}>
         <CustomCanlendar></CustomCanlendar>
         <div style={{ marginTop: 10, width: "100%" }}>
-          <Divider orientation="left">最热</Divider>
+          <Divider orientation="left">最新</Divider>
           <div className={styles.hotArticle}>
             {hotArticle.map((item:any, i) => {
               return (
@@ -115,7 +115,7 @@ export default class LeftNav extends PureComponent<IProps, IState> {
           </div>
         </div>
 
-        <div style={{ marginTop: 10 }}>
+        <div style={{ marginTop: 10,width: "100%" }}>
           <Divider orientation="left">标签</Divider>
           <div className={styles.lables}>
             {tags &&

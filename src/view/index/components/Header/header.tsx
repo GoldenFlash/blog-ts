@@ -14,7 +14,7 @@ interface IProps {
   }
   windowWidth?:number
   history:{
-    push:(key:string)=>void
+    [propname:string]:any
   }
   [propname:string]:any
 }
@@ -44,6 +44,8 @@ class Header extends React.Component<IProps, IState> {
     var keyWord = this.keyWord;
     if (keyWord) {
       this.props.history.push(`/search/${keyWord}`);
+    }else{
+      this.props.history.replace("/");
     }
   };
 
