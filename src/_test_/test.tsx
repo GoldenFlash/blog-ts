@@ -1,95 +1,55 @@
 import React from "react"
+import ReactDOM from "react-dom"
 
-class TestParent {
-    name: string;
-    constructor() {
-        this.name = "name"
-    }
-
-    fn() {
-        console.log("fn")
-    }
+interface reducerState{
+    count:number;
+    [propName:string]:any;
 }
 
-class TestChild extends TestParent {
-    // constructor(){
-    //     super()
-    //     console.log("a")
-    // }
+interface reducerAction{
+    type?:string;
+    content?:any;
+    [propName:string]:any;
 
-    fn2() {
-        console.log(this.name)
-    }
 }
 
-
-console.log(new TestParent())
-
-let child = new TestChild()
-console.log(child)
-child.fn2()
-
-export default function Test() {
-    let [count, setCount] = React.useState(0)
-    let [visible, setVisible] = React.useState(false)
-    const handlerClick = () => {
-        console.log("click")
-        setVisible(!visible)
-    }
-
-    const onChange = (value: string) => {
-        console.log("value", value)
-        setCount(parseFloat(value))
-    }
-    let labelText,
-        onchangeHandler,
-        inputValue
-    return (
-        <div>
-            <span>{visible ? "true" : "false"}</span>
-            <span>{count}</span>
-            {
-                visible ? <Child onChange={onChange} value={count}></Child> : <Child value={count} onChange={onChange}></Child>
+function reducer(state:reducerState,action:reducerAction){
+    switch (action.type) {
+        case "count":
+            return{
+                count:state.count +1
             }
-            <br />
-            <button onClick={handlerClick}>click</button>
-
-            <label htmlFor="namedInput">Name:</label>
-            <input id="namedInput" type="text" name="name" />
-
-            <input
-                type="text"
-                aria-label={labelText}
-                aria-required="true"
-                onChange={onchangeHandler}
-                value={inputValue}
-                name="name"
-            />
-
-        </div>
-    )
+            break;
+    
+        default:
+            return state
+            break;
+    }
 }
 
-interface ChildProps {
-    value: number,
-    onChange: (value: string) => void,
-    click?: () => void
+let initalState = {
+    count:0
 }
+export default function Test() {
+    
+    let [state,dispatch]:Array<any> = React.useReducer<any>(reducer,initalState)
 
-const Child = React.memo((props: ChildProps) => {
-    console.log("rerender")
+    const handlerClick = () => {
+        dispatch({type:"count"})
+    }
+    
     return (
         <div>
-            <input value={props.value} onChange={(e) => { props.onChange(e.target.value) }} type="text" />
+            {state.count}
+            <button onClick={handlerClick}>button</button>
         </div>
     )
-})
+}
 
 
 const styles = {
     child: {
         height: "100px",
         width: "100px",
-        backgroundColor: "red"
     }
 }

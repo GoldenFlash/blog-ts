@@ -13,6 +13,7 @@ const Test = React.lazy(() => import("@/_test_/test"));
 const TimeLine = React.lazy(() => import("@/view/timeline/index"));
 const NotFound = React.lazy(() => import("@/components/404/notFound"));
 
+const About = React.lazy(()=>import("@/view/about/about"))
 export default [
   {
     path: "/test",
@@ -75,11 +76,17 @@ export default [
         component: ProjectList,
         requiresAuth: true
       },
-      // {
-      //   path: "/*",
-      //   component:  ()=><Redirect to="/NotFound" />,
-      //   requiresAuth: false
-      // }
+      {
+        path: "/about",
+        exact: true,
+        component: About,
+        requiresAuth: true
+      },
+      {
+        path: "/*",
+        component:  ()=><Redirect to="/NotFound" />,
+        requiresAuth: false
+      }
     ]
   },
   // {

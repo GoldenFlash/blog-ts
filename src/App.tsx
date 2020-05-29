@@ -1,5 +1,5 @@
 import React, { Suspense } from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Switch } from "react-router-dom";
 import { renderRoutes } from "react-router-config";
 import routers from "./router/index"
 
@@ -9,11 +9,14 @@ import { Provider } from "react-redux";
 
 import moment from "moment";
 import "moment/locale/zh-cn";
+
 import reducers from "./redux/reducers";
-import "antd/dist/antd.css";
 import { windowWidth as windowAction } from "@/redux/common/action.js";
-// import ScrollToTop from "@/components/ScrollToTop";
+import ErrorBoundary from "./components/ErrorBoundary"
+import ScrollToTop from "@/components/ScrollToTop";
 import Loading from "./components/Loading"
+
+import "antd/dist/antd.css";
 import "./App.css";
 moment.locale("zh-cn");
 
@@ -39,33 +42,20 @@ window.onresize = () => {
 
 const App: React.FC = () => {
   return (
-    <Provider store={store}>
-      <Suspense fallback={<Loading></Loading> }>
+    <ErrorBoundary>
+      <Provider store={store}>
+        <Suspense fallback={<Loading></Loading>}>
+          <Router>
+            <ScrollToTop>
+              <Switch>
+                {renderRoutes(routers)}
+              </Switch>
+            </ScrollToTop>
+          </Router>
+        </Suspense>
 
-        <Router>
-          {/* <ScrollToTop> */}
-          <Switch>
-            {renderRoutes(routers)}
-          </Switch>
-          {/* </ScrollToTop> */}
-
-          {/* <Route exact path="/article/:id" component={ArticleContent} />
-        <Route exact path="/archive" component={Archive} />
-        <Route exact path="/tag/:tag" component={Tag} />
-        <Route exact path={`/search/:search`} component={ArticleList} />
-        <Route exact path={`/timeline/:time`} component={Timeline} />
-        <Route exact path="/" component={ArticleList} />
-        <Route path="*" component={NotFound} /> */}
-
-          {/* <Switch>
-          <Route path="/edite" component={Edite} />
-          <Route path="/" component={Index}></Route>
-          <Route path="*" component={NotFound} ></Route>
-        </Switch> */}
-        </Router>
-      </Suspense>
-
-    </Provider>
+      </Provider>
+    </ErrorBoundary>
   );
 };
 

@@ -19,15 +19,12 @@ export default class ArticalList extends Component<any, state> {
       loading: false
     };
   }
-  componentDidMount() {
-    console.log("this.props", this.props)
-  }
 
   render() {
     return (
       <>
         <Header></Header>
-        <div className={styles.wrapper}>
+        <div className={styles.wrapper} id="scrollTop">
           <div className={styles.content}>
             {this.props.route.routes ?
               renderRoutes(this.props.route.routes)
