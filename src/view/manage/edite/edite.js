@@ -3,15 +3,15 @@ import React, { PureComponent } from 'react';
 // import 'simplemde/src/css/simplemde.css'
 // import 'simplemde/dist/simplemde.min.css'
 // import MdEditor from 'react-markdown-editor-lite'
-import ReactMarkdown from "react-markdown"
+// import ReactMarkdown from "react-markdown"
 import Loading from "@/components/Loading"
 import { message, Button, Empty } from "antd"
 import EditableTagGroup from "@/components/editableTags"
-import CodeMirrorEditor from "@/components/CodeMirrorEditor"
+// import CodeMirrorEditor from "@/components/CodeMirrorEditor"
 // import { translateMarkdown } from "@/util/util"
 import api from "@/api/api"
 import "./edite.scss"
-import { relative } from 'path';
+
 export default class Edite extends PureComponent {
     constructor(props) {
         super(props)
@@ -24,14 +24,14 @@ export default class Edite extends PureComponent {
             title: this.props.article.title
         })
         
-        // this.initEditor(this.props.article)
+        this.initEditor(this.props.article)
     }
     componentWillReceiveProps(nextProps) {
         if (nextProps.article._id !== this.props.article._id) {
             this.setState({
                 title: nextProps.article.title
             })
-            // this.initEditor(nextProps.article)
+            this.initEditor(nextProps.article)
         }
     }
     componentWillUpdate(nextProps, nextState) {
@@ -123,15 +123,15 @@ export default class Edite extends PureComponent {
     render() {
         var content = this.props.article.content
 
-        return (
-            <div className="editor-pane2">
+        // return (
+        //     <div className="editor-pane2">
 
-            <div style={{height:"100vh",width:"100%",position:"relative"}} className="editor pure-form">
-                <CodeMirrorEditor theme="monokai" value={content} onChange={()=>{}} ></CodeMirrorEditor>
+        //     <div style={{height:"100vh",width:"100%",position:"relative"}} className="editor pure-form">
+        //         <CodeMirrorEditor theme="monokai" value={content} onChange={()=>{}} ></CodeMirrorEditor>
 
-            </div> 
-            </div>
-        )
+        //     </div> 
+        //     </div>
+        // )
         return (
             <div className="edite_wrapper">
                 {(content || content === "") &&

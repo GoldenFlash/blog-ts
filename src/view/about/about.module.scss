@@ -1,27 +1,134 @@
-.container{
-  width: 80%;
-  background-image: url("../../assets/resume/1.jpeg");
-  background-size: cover;
-  padding: 0 15px;
-  .header{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height:200px;
+.fontColor{
+  color:#344663
+}
+// @font-face{
+//   font-family: Microsoft YaHei;
+// }
+.container {
+  border: solid #333 1px;
+  display: flex;
+  max-width: 1000px;
+  margin:0 auto;
+  .side {
+    flex: 2;
+    .header {
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+      .avatar {
+        width: 100px;
+        height: 100px;
+        margin: 20px auto;
+        background-image: url("../../assets/resume/photo.jpg");
+        background-size: cover;
+        border-radius: 50%;
+      };
+      .name{
+        font-size: 30px;
+        font-weight: 900;
+        @extend .fontColor;
+      }
+      .purpose{
+        @extend .fontColor;
+        margin-top: 10px;
+      }
+    }
+    .aboutme{
+      margin-left: 40px;
+      p{
+        line-height: 20px;
+        margin: 5;
+      }
+    }
   }
-  .avatar{
-    width:100px;
-    height:100px;
-    margin: 20px 0;
-    background-image: url("../../assets/resume/photo.jpg");
-    background-size: cover;
-    border-radius: 50%;
-    border: solid #635455 5px;
-  }
-  .content{
-    // width: 100%;
-    height: 100%;
-    background-color:#fff;
-    margin-top: -100px;
+  .content {
+    margin-left: 20px;
+    flex: 4;
+    // border-left: solid #333 1px;
+    .company{
+      margin:20px 0;
+      margin-left: 10px;
+      overflow: hidden;
+      .company_title{
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        span{
+          flex:1;
+          color: #333;
+          font-weight: 600;
+          
+        }
+      }
+      .detail{
+        margin-top: 10px;
+        padding-left: 20px;
+      }
+    }
+    .project{
+      margin: 15px 10px;
+      overflow: hidden;
+      .project_title{
+        margin: 10px 0;
+        font-size: 15px;
+        font-weight: 500;
+      }
+      .project_content{
+        color: #333;
+        p{
+          margin:5px 0;
+          line-height: 1.6;
+          strong{
+            font-weight: 500;
+          }
+          .usedSkill{
+            font-weight: 500;
+            color:#333
+          }
+        }
+      }
+    }
+    .aboutme{
+      color: #333;
+      margin-left: 25px;
+      p{
+        line-height: 1.6;
+        strong{
+          color: #FF5700;
+          border-radius: 5px;
+          background: #efefef;
+          padding:0 2px;
+        }
+      }
+    }
+    
   }
 }
+
+.headerline{
+  margin:20px 0;
+  .headerline_title{
+    color: #344663;
+    border-bottom: solid #344663 2px;
+    padding:5px;
+    margin: 5px;
+ }
+ .headerline_content{
+  margin: 5px;
+  font-size: 13px;
+ }
+}
+.info{
+  display: flex;
+  height: 25px;
+  margin-left: 10px;
+  align-items: center;
+  .label{
+    flex:1
+  }
+  .value{
+    flex:2
+  }
+}
+

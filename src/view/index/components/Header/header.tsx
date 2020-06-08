@@ -9,8 +9,8 @@ import styles from "./header.module.scss";
 import Login from "../login/login";
 
 interface IProps {
-  userInfo?:{
-    auth?:number|undefined
+  userInfo:{
+    auth?:string
   }
   windowWidth?:number
   history:{
@@ -30,8 +30,8 @@ class Header extends React.Component<IProps, IState> {
         { path: "/", title: "首页", type: "home" },
         { path: "/archive", title: "归档", type: "snippets" },
         { path: "/about", title: "关于", type: "user" },
-        { path: "/project", title: "项目", type: "user" },
-        { path: "/edite", title: "写文章", type: "edit", auth: "0" }
+        // { path: "/project", title: "项目", type: "user" },
+        { path: "/Manage", title: "写文章", type: "edit", auth: "admin" }
       ]
     };
   }
@@ -50,7 +50,7 @@ class Header extends React.Component<IProps, IState> {
   };
 
   render() {
-    let userInfo = this.props;
+    let userInfo:{auth?:string} = this.props.userInfo;
 
     return (
       <header className={styles.header}>
@@ -100,7 +100,7 @@ class Header extends React.Component<IProps, IState> {
                     <span>{item.title}</span>
                   </Menu.Item>
                 );
-              } else if (item.auth && item.auth === userInfo.auth) {
+              } else if (item.auth && item.auth == userInfo.auth) {
                 return (
                   <Menu.Item key={item.path}>
                     <Icon type={item.type} style={{ marginRight: 5 }} />

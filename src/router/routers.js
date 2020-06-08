@@ -29,6 +29,18 @@ export default [
     requiresAuth: true
   },
   {
+    path: "/about",
+    exact: true,
+    component: About,
+    requiresAuth: true
+  },
+  {
+    path: "/article/:id",
+    exact: true,
+    component: Article,
+    requiresAuth: false
+  },
+  {
     path: "/NotFound",
     exact: true,
     component: NotFound,
@@ -52,12 +64,7 @@ export default [
         component: ArticleList,
         requiresAuth: false
       },
-      {
-        path: "/article/:id",
-        exact: true,
-        component: Article,
-        requiresAuth: false
-      },
+     
       {
         path: "/archive",
         exact: true,

@@ -4,7 +4,7 @@
 }
 
 .article-detail {
-  margin: 0 auto;
+  // margin: 0 auto;
   font-family: 'Lato', 'PingFang SC', 'Microsoft YaHei', sans-serif;
   color: #555;
   line-height: 2;
@@ -39,6 +39,7 @@
     background: #f7f7f7;
     line-height: 1.8;
     border:solid #ddd 1px;
+    // white-space: wrap;
   }
   pre > ol{
         color:#999;

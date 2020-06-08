@@ -1,53 +1,38 @@
 import React from "react"
-export default function Test() {
-    let [count,setCount] = React.useState(0)
+import { connect } from "react-redux"
+import { windowWidth as windowAction } from "@/redux/common/action.js";
 
-    const handlerClick=()=>{
-        setCount(count+1)
-        console.log("location",window.location)
-        window.location.href = "http://localhost:3000/"
+function Test(props: any) {
+
+    const handlerClick = () => {
+        console.log("TestProps", props)
     }
+
     return (
         <div style={styles.container}>
             <button onClick={handlerClick}>button</button>
-            <ChildComponent count={count}></ChildComponent>
         </div>
     )
 }
-
-class ChildComponent extends React.Component<any,any>{
-    constructor(props:any){
-        super(props)
-        this.state={}
+export default connect((state: any) => {
+    return {
+        common:state.common
     }
-    static getDerivedStateFromProps(nextProps:any,preveState:any){
-        console.log("nextProps",nextProps)
-        return {
-            count:nextProps.count
+}, (dispatch) => {
+    return {
+        dispatch,
+        onTodoClick: () => {
+            dispatch(windowAction())
         }
     }
-
-    static getDerivedStateFromError(error:any){
-        console.log("getDerivedStateFromError",error)
-    }
-    render(){
-        return(
-            <div>
-                <span>
-                   {this.state.count}
-                </span>
-            </div>
-        )
-    }
-}
-
+})(Test)
 
 
 const styles = {
     container: {
         width: "100%",
         height: "100vh",
-        padding:"20px"
+        padding: "20px"
         // display: "flex",
         // alignItems: "center",
         // justifyContent: "center",

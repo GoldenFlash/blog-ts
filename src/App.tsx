@@ -7,7 +7,6 @@ import { windowWidth as windowAction } from "@/redux/common/action.js";
 import ErrorBoundary from "./components/ErrorBoundary"
 import Loading from "./components/Loading"
 import Router from "./router/index"
-import ScrollToTop from "@/components/ScrollToTop";
 
 import "antd/dist/antd.css";
 import "./App.css";
@@ -31,9 +30,7 @@ const App: React.FC = () => {
     <ErrorBoundary>
       <Provider store={store}>
         <Suspense fallback={<Loading></Loading>}>
-          <ScrollToTop>
-            <Router />
-          </ScrollToTop>
+          <Router />
         </Suspense>
       </Provider>
     </ErrorBoundary>
