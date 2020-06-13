@@ -6,7 +6,9 @@ function Test(props: any) {
 
     const handlerClick = () => {
         console.log("TestProps", props)
+
     }
+
 
     return (
         <div style={styles.container}>
@@ -16,7 +18,7 @@ function Test(props: any) {
 }
 export default connect((state: any) => {
     return {
-        common:state.common
+        common: state.common
     }
 }, (dispatch) => {
     return {
